@@ -70,17 +70,21 @@ const footer = () => (
 						<div className="de-flex">
 							<div className="de-flex-col">
 								<span onClick={() => window.open("", "_self")}>
-									<img alt="" className="f-logo d-1" src="./img/logo.svg" height="40px" style={{"marginTop":"-10px"}}/>
+									<img alt="" className="f-logo d-1" src="./img/logo.svg" height="40px" style={{ "marginTop": "-10px" }} />
 									<span className="copy">&copy; Copyright 2021 - Ethside Prizes</span>
 								</span>
 							</div>
 							<div className="de-flex-col">
 								<div className="social-icons">
-									<span onClick={() => window.open("", "_self")}><i className="fa fa-facebook fa-lg"></i></span>
-									<span onClick={() => window.open("", "_self")}><i className="fa fa-twitter fa-lg"></i></span>
-									<span onClick={() => window.open("", "_self")}><i className="fa fa-linkedin fa-lg"></i></span>
-									<span onClick={() => window.open("", "_self")}><i className="fa fa-pinterest fa-lg"></i></span>
-									<span onClick={() => window.open("", "_self")}><i className="fa fa-rss fa-lg"></i></span>
+									<a href="https://twitter.com/ethsidemafia" target="_blank" alt='' rel="noreferrer">
+										<span><i className="fa fa-twitter fa-lg"></i></span>
+									</a>
+									<a href="https://discord.gg/ethsidemafia" target="_blank" alt='' rel="noreferrer">
+										<span><i className="fa fa-address-book fa-lg"></i></span>
+									</a>
+									<a href="https://ethsidegames.club" target="_blank" alt='' rel="noreferrer">
+										<span><i className="fa fa-home fa-lg"></i></span>
+									</a>
 								</div>
 							</div>
 						</div>
