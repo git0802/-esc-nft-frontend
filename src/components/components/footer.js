@@ -71,7 +71,7 @@ const footer = () => (
 							<div className="de-flex-col">
 								<span onClick={() => window.open("", "_self")}>
 									<img alt="" className="f-logo d-1" src="./img/logo.svg" height="40px" style={{ "marginTop": "-10px" }} />
-									<span className="copy">&copy; Copyright 2021 - Ethside Prizes</span>
+									<span className="copy">&copy; Copyright 2021 - Artist Spotlight</span>
 								</span>
 							</div>
 							<div className="de-flex-col">
@@ -81,6 +81,9 @@ const footer = () => (
 									</a>
 									<a href="https://discord.gg/ethsidemafia" target="_blank" alt='' rel="noreferrer">
 										<span><i className="fa fa-address-book fa-lg"></i></span>
+									</a>
+									<a href="https://linktr.ee/EthsideMafia" target="_blank" alt='' rel="noreferrer">
+										<span><i className="fa fa-tree fa-lg"></i></span>
 									</a>
 									<a href="https://ethsidegames.club" target="_blank" alt='' rel="noreferrer">
 										<span><i className="fa fa-home fa-lg"></i></span>

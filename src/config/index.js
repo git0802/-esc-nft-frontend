@@ -1,3 +1,3 @@
-export const NFTaddress = '0x665cF821e4ECd6fFd77ba085f728AE3A6cdC4A72'
-export const NFTMarketaddress = '0xbb920439cbe345d66ff634B95540e60bd9Ec09ec'
-export const ESCTokenaddress = '0x53D9e728D28e4675dA0fF36a2163657694aF24c0'
+export const NFTaddress = '0x7E1E9F9B25E9Fe7bDcd4bdBd0aE684052f12E4D0'
+export const NFTMarketaddress = '0x62178EE46fFe76F1fb8CeC9719a70629dFbAa38e'
+export const ESCTokenaddress = '0x89b32156CF1BDAF7Ce2fCd828404287769684e42'

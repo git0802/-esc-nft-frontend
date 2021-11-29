@@ -34,11 +34,11 @@ const slidermain = () => (
         </Reveal>
         <div className="spacer-10"></div>
         <Reveal className='onStep' keyframes={fadeInUp} delay={300} duration={600} triggerOnce>
-          <h1 className="">Create, sell or collect ESC Gaming digital items.</h1>
+          <h1 className="">Find the hottest upcoming artists.</h1>
         </Reveal>
         <Reveal className='onStep' keyframes={fadeInUp} delay={600} duration={600} triggerOnce>
           <p className=" lead">
-            on the world's first & largest ESC Gaming NFT marketplace
+           The first artist owned NFT marketplace
           </p>
         </Reveal>
         <div className="spacer-10"></div>
