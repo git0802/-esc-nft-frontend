@@ -12,6 +12,8 @@ export const fetchNfts = () => async (dispath) => {
   try {
 
     const data = await nftMarketContract.fetchMarketItems()
+
+    console.info('marketplace data',data)
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await nftContract.tokenURI(i.tokenId)
       const meta = await axios.get(tokenUri)

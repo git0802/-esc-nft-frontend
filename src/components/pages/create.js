@@ -48,6 +48,9 @@ const GlobalStyles = createGlobalStyle`
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
+
+const validFileExtensions = ["jpg", "jpeg", "bmp", "gif", "png", "gif"]
+
 const Createpage = () => {
 
   const [loading, setLoading] = useState(false)
@@ -56,11 +59,17 @@ const Createpage = () => {
   const [formInput, updateFormInput] = useState({ price: 0, name: '', description: '' })
   const { account, library } = useWeb3React()
 
-
-
   async function onChange(e) {
-    setLoading(true)
     const file = e.target.files[0]
+    const fileName = file.name;
+    
+    const [fileExt, ...fileTitle] = fileName.split(".").reverse()
+
+    console.info('filename', file, file.size,  fileTitle, fileExt, fileName, validFileExtensions.indexOf(fileExt.toLowerCase()))
+    if(validFileExtensions.indexOf(fileExt.toLowerCase())<0)  return alert("Invalid file type.")
+    if(file.size/1024/1024 > 2) return alert("File size exceeded")
+
+    setLoading(true)
     try {
       const added = await client.add(
         file,
@@ -159,13 +168,10 @@ const Createpage = () => {
                 <h5>Upload file</h5>
 
                 <div className="d-create-file">
-                  <p id="file_name">PNG, JPG, GIF, WEBP or MP4. Max 200mb.</p>
-                  {/* {this.state.files.map(x => 
-                          <p key="{index}">PNG, JPG, GIF, WEBP or MP4. Max 200mb.{x.name}</p>
-                          )} */}
+                  <p id="file_name">PNG, JPG, JPEG, BMP, JFIF, GIF</p>
                   <div className='browse'>
                     <input type="button" id="get_file" className="btn-main" value="Browse" />
-                    <input id='upload_file' type="file" name='Asset' onChange={onChange} />
+                    <input id='upload_file' type="file" accept="image/gif, image/jpeg, image/png, image/bmp" name='Asset' onChange={onChange} />
                   </div>
 
                 </div>
