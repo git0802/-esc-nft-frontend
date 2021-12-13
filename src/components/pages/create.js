@@ -126,8 +126,8 @@ const Createpage = () => {
       const price = ethers.utils.parseUnits(formInput.price, 'ether')
 
       /* then list the item for sale on the marketplace */
-      let NFTMarketPlcaecontract = new ethers.Contract(NFTMarketaddress, NFT.abi, library.getSigner())
-      transaction = await NFTMarketPlcaecontract.createMarketItem(NFTaddress, tokenId, price)
+      let NFTMarketPlacecontract = new ethers.Contract(NFTMarketaddress, Market.abi, library.getSigner())
+      transaction = await NFTMarketPlacecontract.createMarketItem(NFTaddress, tokenId, price)
       await transaction.wait()
       setPending(false)
       alert("Created and listed NFT item successfully")
