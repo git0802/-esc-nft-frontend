@@ -49,7 +49,7 @@ const GlobalStyles = createGlobalStyle`
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 
-const validFileExtensions = ["jpg", "jpeg", "bmp", "gif", "png", "gif"]
+const validFileExtensions = ["jpg", "jpeg", "bmp", "gif", "png"]
 
 const Createpage = () => {
 
@@ -67,7 +67,7 @@ const Createpage = () => {
 
     console.info('filename', file, file.size,  fileTitle, fileExt, fileName, validFileExtensions.indexOf(fileExt.toLowerCase()))
     if(validFileExtensions.indexOf(fileExt.toLowerCase())<0)  return alert("Invalid file type.")
-    if(file.size/1024/1024 > 2) return alert("File size exceeded")
+    if(file.size/1024/1024 > 1) return alert("File size exceeded")
 
     setLoading(true)
     try {
@@ -83,6 +83,7 @@ const Createpage = () => {
       setLoading(false)
     } catch (error) {
       setLoading(false)
+      alert("Sorry. Please try again later")
       console.log('Error uploading file: ', error)
     }
   }
@@ -106,8 +107,8 @@ const Createpage = () => {
       createSale(url)
     } catch (error) {
       setPending(false)
-      alert("Sorry. failed to create NFT item.")
-      console.log('Error: ', error)
+      alert("Sorry. Please try again later")
+      console.log('Error uploading metadata: ', error)
     }
   }
 
@@ -116,8 +117,8 @@ const Createpage = () => {
     /* next, create the item */
     try {
 
-      let contract = new ethers.Contract(NFTaddress, NFT.abi, library.getSigner())
-      let transaction = await contract.createToken(url)
+      let NFTcontract = new ethers.Contract(NFTaddress, NFT.abi, library.getSigner())
+      let transaction = await NFTcontract.createToken(url)
       let tx = await transaction.wait()
       let event = tx.events[0]
       let value = event.args[2]
@@ -125,20 +126,18 @@ const Createpage = () => {
       const price = ethers.utils.parseUnits(formInput.price, 'ether')
 
       /* then list the item for sale on the marketplace */
-      contract = new ethers.Contract(NFTMarketaddress, Market.abi, library.getSigner())
-      let listingPrice = await contract.getListingPrice()
-      listingPrice = listingPrice.toString()
-
-      transaction = await contract.createMarketItem(NFTaddress, tokenId, price, { value: listingPrice })
+      let NFTMarketPlcaecontract = new ethers.Contract(NFTMarketaddress, NFT.abi, library.getSigner())
+      transaction = await NFTMarketPlcaecontract.createMarketItem(NFTaddress, tokenId, price)
       await transaction.wait()
       setPending(false)
       alert("Created and listed NFT item successfully")
       setFileUrl(null)
       updateFormInput({ price: 0, name: '', description: '' })
-    } catch {
+    } catch(error) {
 
       setPending(false)
-      alert("Sorry. failed to create NFT item.")
+      alert("Sorry. Please try again later")
+      console.log('Error: failed to create nft Item', error)
     }
   }
 
@@ -168,7 +167,7 @@ const Createpage = () => {
                 <h5>Upload file</h5>
 
                 <div className="d-create-file">
-                  <p id="file_name">PNG, JPG, JPEG, BMP, JFIF, GIF</p>
+                  <p id="file_name">PNG, JPG, JPEG, BMP, JFIF. (Please make sure image size is less than 1 Mbyte</p>
                   <div className='browse'>
                     <input type="button" id="get_file" className="btn-main" value="Browse" />
                     <input id='upload_file' type="file" accept="image/gif, image/jpeg, image/png, image/bmp" name='Asset' onChange={onChange} />
